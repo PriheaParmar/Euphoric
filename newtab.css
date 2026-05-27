@@ -1,0 +1,331 @@
+@import url('https://fonts.googleapis.com/css2?family=Cookie&family=Fira+Sans:ital,wght@0,200;0,300;0,400;0,600;0,700;1,300&family=Gwendolyn:wght@400;700&family=Rouge+Script&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root{
+  --fg: rgba(255,255,255,0.94);
+  --muted: rgba(255,255,255,0.72);
+  --soft: rgba(255,255,255,0.14);
+  --hair: rgba(255,255,255,0.10);
+
+  /* favicon palette (vibrant) */
+  --violet: #a86bff;
+  --pink:   #ff78b7;
+  --lav:    #c9a7ff;
+  --deep:   #5a2cff;
+  --ink:    #050505;
+
+  --grad-euphoric: linear-gradient(90deg,
+    #ffffff 0%,
+    #c9a7ff 22%,
+    #a86bff 45%,
+    #ff78b7 70%,
+    #ffffff 100%
+  );
+  /* JS sets this to url("...") */
+  --bg-photo: none;
+
+  --sans: "Fira Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --serif: "Tinos", ui-serif, Georgia, "Times New Roman", serif;
+  --script: "Rouge Script", "Gwendolyn", "Cookie", "Brush Script MT", cursive;
+}
+
+*{ box-sizing: border-box; }
+html, body{ height: 100%; margin: 0; overflow: hidden; }
+body{
+  color: var(--fg);
+  font-family: var(--sans);
+  letter-spacing: 0.2px;
+  background-image: var(--bg-photo);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ========== Cinematic overlay + colorful aura ========== */
+
+/* darker base so text always readable */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  background:    rgba(0, 0, 0, 0.415);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* favicon-inspired neon aura + vignette */
+body::after{
+  content:"";
+  position: fixed;
+  inset: -80px;
+  background:
+    radial-gradient(900px 520px at 22% 30%, color-mix(in oklab, var(--violet) 34%, transparent), transparent 62%),
+    radial-gradient(820px 520px at 78% 25%, color-mix(in oklab, var(--pink) 28%, transparent), transparent 64%),
+    radial-gradient(900px 620px at 55% 90%, color-mix(in oklab, var(--deep) 22%, transparent), transparent 66%),
+    radial-gradient(150% 125% at 50% 50%, transparent 44%, rgba(0,0,0,0.82) 86%);
+  filter: blur(0.6px) saturate(1.25);
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* subtle grain */
+.bg-grain{
+  position: fixed;
+  inset: 0;
+  opacity: 0.05;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(255,255,255,0.08) 0px, rgba(255,255,255,0.08) 1px, transparent 1px, transparent 3px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0px, rgba(255,255,255,0.06) 1px, transparent 1px, transparent 4px);
+  mix-blend-mode: overlay;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* bring UI above overlays */
+.topbar, .rail, .center, .footer, .signature{ position: relative; z-index: 2; }
+
+/* ========== Topbar ========== */
+.topbar{
+  position: fixed;
+  left: 30px;
+  right: 30px;
+  top: 22px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.brand{
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  user-select: none;
+}
+
+.brand-go{
+  font-family: var(--serif);
+  font-size: 28px;
+  letter-spacing: 0.9px;
+  opacity: 0.92;
+}
+
+/* make “Euphoric” more unique: gradient ink + glow */
+/* Top "Euphoric" */
+.brand-euphoric{
+  font-family: var(--script);
+  font-size: 42px;
+  line-height: 1;
+  transform: translateY(4px);
+
+  background: var(--grad-euphoric);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow:
+    0 0 18px rgba(168,107,255,0.18),
+    0 0 26px rgba(255,120,183,0.14);
+}
+
+/* ========== Icon buttons ========== */
+.icon-btn, .rail-btn{
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.08);
+  padding: 10px;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease, background 180ms ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.icon-btn:hover, .rail-btn:hover{
+  transform: translateY(-2px);
+  border-color: color-mix(in oklab, var(--violet) 55%, rgba(255,255,255,0.12));
+  background: rgba(255,255,255,0.045);
+  box-shadow:
+    0 18px 55px rgba(0,0,0,0.55),
+    0 0 26px color-mix(in oklab, var(--violet) 20%, transparent);
+}
+
+.icon-btn:active, .rail-btn:active{ transform: translateY(0px) scale(0.995); }
+
+.icon-btn:focus-visible, .rail-btn:focus-visible{
+  outline: 2px solid color-mix(in oklab, var(--pink) 60%, rgba(255,255,255,0.25));
+  outline-offset: 3px;
+}
+
+.icon{
+  width: 28px;
+  height: 28px;
+  stroke: rgba(255,255,255,0.92);
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ========== Right rail: make it feel “designed” ========== */
+.rail{
+  position: fixed;
+  right: 28px;
+  top: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* add a subtle vertical “glass spine” behind the rail */
+.rail::before{
+  content:"";
+  position: absolute;
+  top: -18px;
+  bottom: -18px;
+  right: 10px;
+  width: 44px;
+  border-radius: 999px;
+  background:
+    linear-gradient(180deg,
+      rgba(255,255,255,0.06),
+      rgba(255,255,255,0.02)
+    );
+  border: 1px solid rgba(255,255,255,0.08);
+  box-shadow:
+    0 26px 80px rgba(0,0,0,0.55),
+    0 0 34px color-mix(in oklab, var(--pink) 14%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: -1;
+}
+
+/* ========== Center layout ========== */
+.center{
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 120px 80px 150px;
+}
+
+/* Clock */
+.clock{
+  display: inline-flex;
+  align-items: baseline;
+  gap: 14px;
+  user-select: none;
+
+  /* a “soft neon” shadow that matches your theme */
+  text-shadow:
+    0 18px 60px rgba(0,0,0,0.72),
+    0 0 32px color-mix(in oklab, var(--violet) 18%, transparent);
+}
+
+.hh, .mm{
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: clamp(76px, 12vw, 176px);
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.92);
+}
+
+.colon{
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(66px, 10vw, 156px);
+  opacity: 0.92;
+  transform: translateY(-2px);
+}
+
+.ampm{
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(18px, 2.2vw, 30px);
+  letter-spacing: 3px;
+  opacity: 0.75;
+  transform: translateY(-7px);
+}
+
+/* Date chip with gradient edge */
+.date{
+  margin-top: 16px;
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 18px;
+
+  border: 1px solid rgba(255,255,255,0.10);
+  background:
+    linear-gradient(180deg, rgba(0,0,0,0.26), rgba(0,0,0,0.14));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  font-family: var(--sans);
+  font-weight: 300;
+  font-size: clamp(18px, 2.0vw, 30px);
+  letter-spacing: 1.2px;
+  color: rgba(255,255,255,0.72);
+
+  /* colorful edge glow */
+  box-shadow:
+    0 22px 70px rgba(0,0,0,0.55),
+    0 0 0 1px color-mix(in oklab, var(--violet) 18%, transparent),
+    0 0 26px color-mix(in oklab, var(--pink) 12%, transparent);
+}
+
+/* ========== Footer ========== */
+.footer{
+  position: fixed;
+  left: 30px;
+  right: 30px;
+  bottom: 22px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.quote{
+  max-width: 980px;
+  margin: 0;
+  text-align: center;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.74);
+  text-shadow: 0 14px 40px rgba(0,0,0,0.72);
+  padding: 0 60px;
+}
+
+/* Signature: make it “art” */
+/* Bottom signature "Euphoric" */
+.signature{
+  position: fixed;
+  left: 30px;
+  bottom: 18px;
+  font-family: var(--script);
+  font-size: 30px;
+  opacity: 0.9;
+
+  background: var(--grad-euphoric);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  text-shadow:
+    0 0 20px rgba(168,107,255,0.16),
+    0 0 28px rgba(255,120,183,0.12);
+}
+
+/* ========== Responsive ========== */
+@media (max-width: 720px){
+  .quote{ padding: 0 12px; font-size: 16px; }
+  .rail{ right: 14px; top: 92px; }
+  .topbar{ left: 14px; right: 14px; top: 14px; }
+  .signature{ left: 14px; bottom: 14px; }
+  .rail::before{ right: 6px; width: 40px; }
+}
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .icon-btn, .rail-btn{ transition: none; }
+}
