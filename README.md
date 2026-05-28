@@ -1,69 +1,71 @@
-# Euphoric
+# 🦋 Euphoric
 
-Euphoric is a calming Chrome new tab extension with beautiful daily scenery, a stylish clock, Bhagavad Gita daily lessons, automatic website shortcuts, Spotify controls, Focus/Pomodoro mode, and optional desktop butterfly reminders.
+A soft, aesthetic Chrome new tab made for calm focus, pretty views, and gentle productivity.
 
-## Features
+<p align="center">
+  <b>Scenery • Time • Gita Lessons • Focus • Spotify • Shortcuts • Butterfly Reminders</b>
+</p>
 
-- Random daily scenic new tab background, unique per browser
-- Large stylish editorial clock and date
-- Random daily Bhagavad Gita lesson text, unique per browser
-- Automatic shortcuts from most visited/recent websites
-- Spotify now-playing panel and playback controls
-- Focus mode / Pomodoro study timer
-- Task reminders
-- Optional Windows desktop companion for butterfly reminder animation
+---
 
-## Install for development
+## ✨ What is Euphoric?
 
-1. Download or clone this repository.
-2. Open Chrome and go to `chrome://extensions`.
-3. Turn on **Developer mode**.
-4. Click **Load unpacked**.
-5. Select the `chrome-extension` folder.
+**Euphoric** turns your new tab into a peaceful home screen with beautiful daily scenery, a stylish clock, Bhagavad Gita lessons, automatic shortcuts, Spotify controls, and a cute butterfly reminder system.
 
-## Optional butterfly desktop companion
+It is made to feel calm, magical, and useful — not boring.
 
-The browser extension works without the desktop companion, but full desktop butterfly reminders need the Windows companion.
+---
 
-1. Open `RUN_THIS_FOR_LOGO_BUTTERFLY_COMPANION_windows`.
-2. Run `RESET_AND_INSTALL_COMPANION.bat`.
-3. Restart Chrome.
+## 🌸 Features
 
-## Spotify setup
+- 🕰️ Stylish new tab clock  
+- 🌄 Random daily 4K scenery  
+- 📖 Daily Bhagavad Gita lesson  
+- 🔗 Auto shortcuts from recent/visited sites  
+- 🎧 Spotify now-playing controls  
+- 🍅 Focus / Pomodoro study timer  
+- 🦋 Butterfly desktop reminders  
+- 💫 Soft magical reminder music  
 
-Spotify support uses Spotify OAuth. You need your own Spotify Developer app Client ID.
+---
 
-1. Open the Euphoric new tab.
-2. Click Spotify.
-3. Paste your Spotify Client ID.
-4. Copy the redirect URL shown in Euphoric.
-5. Add that redirect URL in your Spotify Developer Dashboard app settings.
-6. Connect again.
+## 🛠️ Install
 
-Playback controls require an active Spotify playback device, and some controls may require Spotify Premium.
+1. Open Chrome  
+2. Go to `chrome://extensions`  
+3. Turn on **Developer mode**  
+4. Click **Load unpacked**  
+5. Select the `chrome-extension` folder  
 
-## Permissions
+---
 
-Euphoric uses Chrome permissions for:
+## 🦋 Desktop Butterfly Reminder
 
-- `storage` — save tasks/settings/shortcuts
-- `alarms` — scheduled reminders
-- `nativeMessaging` — optional desktop butterfly companion
-- `identity` — Spotify OAuth login
-- `topSites` and `history` — automatic shortcut suggestions from your recent/visited websites
+For the floating butterfly alarm:
 
-## Project structure
+1. Open `RUN_THIS_FOR_LOGO_BUTTERFLY_COMPANION_windows`
+2. Run `RESET_AND_INSTALL_COMPANION.bat`
+3. Restart Chrome
 
-```text
-chrome-extension/                         Chrome extension source
-RUN_THIS_FOR_LOGO_BUTTERFLY_COMPANION_windows/  Optional Windows reminder companion
-```
+---
 
-## Notes
+## 🎧 Spotify Setup
 
-This is an unpacked extension project for development and personal use. Before publishing to the Chrome Web Store, review permissions, privacy text, assets, and packaging requirements.
+1. Create a Spotify Developer app  
+2. Copy your **Client ID**  
+3. Open Euphoric → Spotify  
+4. Paste Client ID  
+5. Add the redirect URL shown in Euphoric to your Spotify app settings  
+6. Connect and enjoy  
 
+---
 
-## v1.1 Random daily content
+## 💜 Made for
 
-Scenery and Bhagavad Gita lessons are now selected randomly per browser/user and change daily. The same user sees stable content for that day, but different users can see different daily images and lessons.
+Students, dreamers, soft productivity lovers, and anyone who wants their browser to feel peaceful.
+
+---
+
+<p align="center">
+  Made with 🦋 by <b>Prihea</b>
+</p>
