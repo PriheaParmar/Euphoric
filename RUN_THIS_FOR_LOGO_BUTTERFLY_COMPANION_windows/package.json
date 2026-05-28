@@ -1,0 +1,14 @@
+{
+  "name": "euphoric-logo-butterfly-companion",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Native desktop companion for Euphoric logo butterfly reminders.",
+  "main": "alarm-main.js",
+  "scripts": {
+    "install:deps": "npm install",
+    "test:direct": "node native-host.js --test"
+  },
+  "devDependencies": {
+    "electron": "^32.3.3"
+  }
+}

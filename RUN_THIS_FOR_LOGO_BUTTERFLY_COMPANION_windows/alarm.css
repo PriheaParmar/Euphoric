@@ -1,0 +1,283 @@
+:root {
+  color-scheme: dark;
+  --cream: #fff8ef;
+  --ink: #161925;
+  --rose: #f6a0c7;
+  --peach: #ffc581;
+  --violet: #a985ff;
+  --landed-butterfly-width: 86px;
+  --landed-butterfly-height: 70px;
+  --landed-butterfly-scale: .72;
+  --landed-butterfly-hover-scale: .73;
+  --trail-width: 520px;
+  --trail-height: 60px;
+  --trail-opacity: .58;
+}
+* { box-sizing: border-box; }
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  user-select: none;
+}
+button { font: inherit; }
+.stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: visible;
+  background: transparent;
+  perspective: 1000px;
+}
+.stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .40;
+  background:
+    radial-gradient(circle at 11% 18%, rgba(255,238,198,.48) 0 10px, transparent 24px),
+    radial-gradient(circle at 24% 26%, rgba(246,160,199,.26) 0 8px, transparent 22px),
+    radial-gradient(circle at 39% 16%, rgba(169,133,255,.22) 0 9px, transparent 23px),
+    radial-gradient(circle at 58% 24%, rgba(255,236,188,.28) 0 7px, transparent 18px),
+    radial-gradient(circle at 74% 17%, rgba(246,160,199,.22) 0 8px, transparent 21px),
+    radial-gradient(circle at 88% 23%, rgba(169,133,255,.18) 0 8px, transparent 20px);
+  filter: blur(8px);
+  animation: ambientBokeh 6.6s ease-in-out infinite alternate;
+}
+.stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: .34;
+  background:
+    radial-gradient(circle at 14% 20%, rgba(255,247,225,.95) 0 1.3px, transparent 3px),
+    radial-gradient(circle at 22% 14%, rgba(255,233,196,.86) 0 1px, transparent 2.8px),
+    radial-gradient(circle at 33% 26%, rgba(255,242,228,.88) 0 1.1px, transparent 2.8px),
+    radial-gradient(circle at 49% 18%, rgba(255,247,225,.82) 0 1px, transparent 2.6px),
+    radial-gradient(circle at 66% 22%, rgba(255,240,214,.82) 0 1.1px, transparent 2.8px),
+    radial-gradient(circle at 81% 16%, rgba(255,247,225,.82) 0 1px, transparent 2.6px);
+  filter: blur(.35px);
+  animation: twinkleDrift 5.2s ease-in-out infinite alternate;
+}
+.sparkles {
+  position: absolute;
+  top: 49px;
+  right: 76px;
+  width: var(--trail-width);
+  height: var(--trail-height);
+  pointer-events: none;
+  opacity: var(--trail-opacity);
+  transform-origin: 100% 50%;
+  background:
+    radial-gradient(circle at 10% 52%, rgba(255,243,221,.54) 0 3.8px, transparent 9px),
+    radial-gradient(circle at 24% 42%, rgba(255,233,200,.36) 0 3.2px, transparent 8px),
+    radial-gradient(circle at 42% 58%, rgba(246,160,199,.26) 0 2.8px, transparent 7px),
+    radial-gradient(circle at 60% 46%, rgba(169,133,255,.20) 0 2.5px, transparent 6.5px),
+    radial-gradient(circle at 74% 54%, rgba(255,232,198,.20) 0 2px, transparent 5px),
+    linear-gradient(90deg, rgba(255,255,255,0), rgba(255,240,218,.12), rgba(246,160,199,.06), rgba(255,255,255,0));
+  filter: blur(1.7px);
+  border-radius: 999px;
+  -webkit-mask-image: radial-gradient(ellipse at 78% 50%, black 0 18%, rgba(0,0,0,.68) 42%, rgba(0,0,0,.22) 66%, transparent 92%);
+  mask-image: radial-gradient(ellipse at 78% 50%, black 0 18%, rgba(0,0,0,.68) 42%, rgba(0,0,0,.22) 66%, transparent 92%);
+  animation: sparkleFollowPath 11.2s linear both;
+}
+.sparkles::before,
+.sparkles::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 999px;
+}
+.sparkles::before {
+  background:
+    radial-gradient(circle at 18% 56%, rgba(255,249,237,.74) 0 2.2px, transparent 5.2px),
+    radial-gradient(circle at 42% 40%, rgba(255,226,237,.50) 0 1.9px, transparent 4.2px),
+    radial-gradient(circle at 63% 60%, rgba(207,191,255,.40) 0 1.8px, transparent 4.2px),
+    radial-gradient(circle at 82% 48%, rgba(255,242,226,.34) 0 1.6px, transparent 4px);
+  filter: blur(.9px);
+  opacity: .64;
+  animation: sparkleShimmer 1.8s ease-in-out infinite alternate;
+}
+.sparkles::after {
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,239,216,.12), rgba(246,160,199,.06), rgba(255,255,255,0));
+  filter: blur(3px);
+  opacity: .52;
+}
+.stage.has-landed .sparkles,
+.stage.is-open .sparkles {
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+.butterfly-button {
+  position: absolute;
+  top: 18px;
+  right: 16px;
+  width: 150px;
+  height: 122px;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  transform-origin: 52% 55%;
+  transform-style: preserve-3d;
+  filter: drop-shadow(0 18px 28px rgba(132, 91, 210, 0.22));
+  animation: cleanStraightFlight 11.2s linear both;
+}
+.stage.has-landed .butterfly-button { width: var(--landed-butterfly-width); height: var(--landed-butterfly-height); top: 18px; right: 16px; animation: butterflyLandSmall 3.2s ease-in-out infinite; }
+.logo-rig {
+  position: absolute;
+  inset: 0;
+  transform-origin: 52% 54%;
+  transform-style: preserve-3d;
+  animation: flightLean 11.2s linear both;
+}
+.stage.has-landed .logo-rig { animation: landedLean 2.2s ease-in-out infinite alternate; }
+.logo-glow {
+  position: absolute;
+  inset: 17px 18px 10px;
+  border-radius: 999px;
+  background: radial-gradient(circle, rgba(255,225,180,.56), rgba(246,160,199,.20) 44%, rgba(169,133,255,0) 76%);
+  filter: blur(14px);
+  opacity: .82;
+  transform: scale(.92);
+  pointer-events: none;
+  animation: glowPulse 2.6s ease-in-out infinite;
+}
+.logo-wing,
+.logo-core {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+.logo-core {
+  opacity: .30;
+  filter: blur(.15px) saturate(1.08) brightness(1.04);
+  transform: scale(.99);
+}
+.logo-wing { filter: saturate(1.08) brightness(1.04); }
+.wing-left {
+  clip-path: inset(0 50% 0 0);
+  transform-origin: 53% 56%;
+  animation: leftWingFlap 470ms ease-in-out infinite;
+}
+.wing-right {
+  clip-path: inset(0 0 0 50%);
+  transform-origin: 47% 56%;
+  animation: rightWingFlap 470ms ease-in-out infinite;
+}
+.stage.has-landed .wing-left { animation: leftWingIdle 1.35s ease-in-out infinite alternate; }
+.stage.has-landed .wing-right { animation: rightWingIdle 1.35s ease-in-out infinite alternate; }
+.stage.has-landed .logo-core { opacity: .42; }
+
+.sparkles::before {
+  background:
+    radial-gradient(circle at 18% 58%, rgba(255,247,232,.76) 0 2px, transparent 5px),
+    radial-gradient(circle at 44% 40%, rgba(255,221,235,.50) 0 1.7px, transparent 4px),
+    radial-gradient(circle at 64% 60%, rgba(206,186,255,.42) 0 1.5px, transparent 4px);
+  filter: blur(.8px);
+  opacity: .64;
+  animation: sparkleShimmer 1.8s ease-in-out infinite alternate;
+}
+.sparkles::after {
+  background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,233,201,.12), rgba(246,160,199,.08), rgba(255,255,255,0));
+  filter: blur(3px);
+  opacity: .54;
+}
+.note {
+  position: absolute;
+  top: 88px;
+  right: 8px;
+  width: 342px;
+  min-height: 156px;
+  padding: 14px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 24px;
+  background: linear-gradient(145deg, rgba(16, 21, 36, 0.94), rgba(25, 23, 37, 0.86)), radial-gradient(circle at 12% 8%, rgba(246,160,199,0.28), transparent 36%);
+  box-shadow: 0 24px 70px rgba(0,0,0,0.45), inset 0 1px 0 rgba(255,255,255,0.13);
+  backdrop-filter: blur(18px) saturate(1.2);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(20px) translateY(-8px) scale(.94);
+  transition: opacity 230ms ease, transform 330ms cubic-bezier(.18,.8,.2,1);
+}
+.stage.is-open .note { opacity: 1; pointer-events: auto; transform: translateX(0) translateY(0) scale(1); }
+.note-topline { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 10px; }
+.mini-butterfly { display: grid; place-items: center; width: 44px; height: 38px; border-radius: 16px; background: rgba(255,255,255,0.08); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08); }
+.mini-butterfly img { width: 39px; height: 32px; object-fit: contain; }
+.eyebrow { margin: 0; color: rgba(255,255,255,0.96); font-size: 13px; line-height: 1; font-weight: 850; letter-spacing: -0.01em; }
+.time { margin: 4px 0 0; color: rgba(255,255,255,0.55); font-size: 11px; font-weight: 650; }
+.close { display: grid; place-items: center; width: 30px; height: 30px; border: 0; border-radius: 999px; color: rgba(255,255,255,0.72); background: rgba(255,255,255,0.09); font-size: 22px; line-height: 1; cursor: pointer; }
+.close:hover { background: rgba(255,255,255,0.16); color: #fff; }
+.task { margin: 14px 0 12px; padding: 14px 15px; min-height: 55px; border-radius: 18px; color: #202335; background: var(--cream); font-size: 14px; line-height: 1.35; font-weight: 760; box-shadow: inset 0 1px 0 rgba(255,255,255,0.75); user-select: text; }
+.actions { display: flex; gap: 9px; }
+.actions button { min-height: 34px; border: 0; border-radius: 999px; padding: 0 14px; cursor: pointer; font-size: 12px; font-weight: 850; }
+.done { color: #171927; background: linear-gradient(135deg, var(--rose), var(--peach)); box-shadow: 0 10px 24px rgba(246,160,199,0.23); }
+.snooze { color: rgba(255,255,255,0.88); background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.11) !important; }
+.snooze:hover { background: rgba(255,255,255,0.16); }
+.done:hover { filter: brightness(1.05); }
+
+@keyframes cleanStraightFlight {
+  0% { transform: translateX(calc(-100vw - 170px)) translateY(10px) rotate(56deg) scale(.86); opacity: 0; }
+  3% { opacity: 1; }
+  24% { transform: translateX(calc(-72vw)) translateY(4px) rotate(52deg) scale(.89); opacity: 1; }
+  52% { transform: translateX(calc(-44vw)) translateY(-3px) rotate(47deg) scale(.93); opacity: 1; }
+  78% { transform: translateX(calc(-18vw)) translateY(-1px) rotate(38deg) scale(.97); opacity: 1; }
+  94% { transform: translateX(-12px) translateY(2px) rotate(16deg) scale(1.004); opacity: 1; }
+  100% { transform: translateX(0) translateY(0) rotate(0deg) scale(.80); opacity: 1; }
+}
+@keyframes flightLean {
+  0% { transform: rotateY(-12deg) rotateZ(26deg); }
+  42% { transform: rotateY(-12deg) rotateZ(24deg); }
+  74% { transform: rotateY(-10deg) rotateZ(17deg); }
+  92% { transform: rotateY(-5deg) rotateZ(7deg); }
+  100% { transform: rotateY(0deg) rotateZ(0deg); }
+}
+@keyframes leftWingFlap {
+  0% { transform: perspective(650px) rotateY(54deg) rotateZ(-6deg) translateX(-2px) translateY(-1px); }
+  48% { transform: perspective(650px) rotateY(16deg) rotateZ(2deg) translateX(0) translateY(1px); }
+  100% { transform: perspective(650px) rotateY(54deg) rotateZ(-6deg) translateX(-2px) translateY(-1px); }
+}
+@keyframes rightWingFlap {
+  0% { transform: perspective(650px) rotateY(-54deg) rotateZ(6deg) translateX(2px) translateY(-1px); }
+  48% { transform: perspective(650px) rotateY(-16deg) rotateZ(-2deg) translateX(0) translateY(1px); }
+  100% { transform: perspective(650px) rotateY(-54deg) rotateZ(6deg) translateX(2px) translateY(-1px); }
+}
+@keyframes leftWingIdle {
+  0% { transform: perspective(650px) rotateY(14deg) rotateZ(-1deg); }
+  100% { transform: perspective(650px) rotateY(4deg) rotateZ(.6deg); }
+}
+@keyframes rightWingIdle {
+  0% { transform: perspective(650px) rotateY(-14deg) rotateZ(1deg); }
+  100% { transform: perspective(650px) rotateY(-4deg) rotateZ(-.6deg); }
+}
+@keyframes landedLean { 0% { transform: rotateY(0) rotateZ(0); } 100% { transform: rotateY(-3deg) rotateZ(-.6deg); } }
+@keyframes butterflyLandSmall { 0%,100% { transform: translateY(0) rotate(0deg) scale(var(--landed-butterfly-scale)); } 50% { transform: translateY(-4px) rotate(-.8deg) scale(var(--landed-butterfly-hover-scale)); } }
+@keyframes glowPulse { 0%,100% { transform: scale(.94); opacity: .42; } 50% { transform: scale(1.08); opacity: .86; } }
+@keyframes sparkleFollowPath { 0% { opacity: 0; transform: translateX(calc(-100vw - 170px)) translateY(10px) scaleX(.42) scaleY(.86); } 4% { opacity: .24; } 24% { opacity: var(--trail-opacity); transform: translateX(calc(-72vw)) translateY(4px) scaleX(.58) scaleY(.92); } 52% { opacity: .50; transform: translateX(calc(-44vw)) translateY(-3px) scaleX(.82) scaleY(1); } 78% { opacity: .42; transform: translateX(calc(-18vw)) translateY(-1px) scaleX(.96) scaleY(1.02); } 94% { opacity: .18; transform: translateX(-12px) translateY(2px) scaleX(1.02) scaleY(1.04); } 100% { opacity: 0; transform: translateX(0) translateY(0) scaleX(1.04) scaleY(1.04); } }
+
+@keyframes sparkleShimmer {
+  0% { opacity: .40; transform: translateY(0); }
+  100% { opacity: .72; transform: translateY(-2px); }
+}
+
+@keyframes ambientBokeh {
+  0% { transform: translateY(0) scale(1); opacity: .34; }
+  100% { transform: translateY(-3px) scale(1.02); opacity: .48; }
+}
+
+@keyframes twinkleDrift {
+  0% { transform: translateX(0) translateY(0); opacity: .22; }
+  100% { transform: translateX(12px) translateY(-2px); opacity: .36; }
+}

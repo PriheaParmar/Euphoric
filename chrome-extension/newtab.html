@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>Euphoric</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="background" id="background"></div>
+    <div class="shade shade-top"></div>
+    <div class="shade shade-center"></div>
+    <div class="shade shade-bottom"></div>
+    <div class="noise"></div>
+
+    <main class="page" aria-label="Euphoric new tab">
+      <header class="brand" aria-label="Euphoric">
+        <img src="assets/euphoric-symbol.png" alt="" />
+        <span>EUPHORIC</span>
+      </header>
+
+      <div class="top-actions">
+        <button class="quick-toggle" id="musicToggle" type="button" aria-label="Open Spotify"><span>♫</span><b>Spotify</b></button>
+        <button class="quick-toggle" id="focusToggle" type="button" aria-label="Open focus mode"><span>◌</span><b>Focus</b></button>
+        <button class="tasks-toggle" id="tasksToggle" type="button" aria-label="Open tasks">
+          <span class="tasks-toggle-icon">✓</span>
+          <span class="tasks-toggle-label">Tasks</span>
+          <span class="tasks-count" id="tasksCount">0</span>
+        </button>
+      </div>
+
+      <section class="hero" aria-label="Clock and date">
+        <time class="time" id="time">00:00</time>
+        <time class="date" id="date">Monday, January 1, 2026</time>
+
+        <section class="shortcuts" id="shortcuts" aria-label="Quick shortcuts"></section>
+        <p class="shortcuts-note" id="shortcutsNote">Auto shortcuts from your recent and most visited sites</p>
+      </section>
+
+      <section class="quote-card" aria-label="Daily motivation">
+        <p class="quote" id="quote">Every sunrise is a fresh beginning.</p>
+        <p class="quote-author" id="author">— Unknown</p>
+      </section>
+    </main>
+
+    <div class="tasks-backdrop" id="tasksBackdrop" hidden></div>
+
+    <aside class="tasks-panel" id="tasksPanel" aria-label="Euphoric task planner" aria-hidden="true">
+      <div class="tasks-panel-header">
+        <div class="panel-title-wrap">
+          <p class="eyebrow">Butterfly alarm</p>
+          <h2>Plan your day</h2>
+          <p class="panel-subtitle">Tasks can trigger a tiny butterfly on the top-right of your laptop screen.</p>
+        </div>
+        <button class="icon-button" id="tasksClose" type="button" aria-label="Close tasks">×</button>
+      </div>
+
+      <div class="system-card">
+        <div>
+          <p class="system-label">System alerts</p>
+          <p class="system-copy">Tiny top-right butterfly from the Euphoric Desktop Companion.</p>
+        </div>
+        <button class="test-alert" id="testNotification" type="button">Test logo butterfly</button>
+      </div>
+
+      <form class="task-form" id="taskForm">
+        <label for="taskText">Task</label>
+        <input id="taskText" type="text" maxlength="90" placeholder="e.g. Submit assignment" autocomplete="off" required />
+
+        <div class="form-grid">
+          <div>
+            <label for="taskTime">Date & time</label>
+            <input id="taskTime" type="datetime-local" required />
+          </div>
+        </div>
+
+        <button class="add-task" type="submit">Add reminder</button>
+        <p class="task-error" id="taskError" role="alert"></p>
+      </form>
+
+      <div class="tasks-section-header">
+        <span>Upcoming</span>
+        <small id="tasksSummary">0 pending</small>
+      </div>
+      <div class="task-list" id="taskList" aria-live="polite"></div>
+    </aside>
+
+
+    <aside class="mini-panel music-panel" id="musicPanel" aria-label="Spotify music" aria-hidden="true">
+      <div class="mini-panel-header"><div><p class="eyebrow">Spotify</p><h2>Now playing</h2></div><button class="icon-button" id="musicClose" type="button" aria-label="Close Spotify">×</button></div>
+      <div class="spotify-card"><div class="album-art" id="spotifyArt">♫</div><div class="spotify-meta"><p class="spotify-title" id="spotifyTitle">Connect Spotify</p><p class="spotify-artist" id="spotifyArtist">Control your active Spotify session here.</p></div></div>
+      <div class="spotify-controls"><button id="spotifyPrev" type="button">⏮</button><button id="spotifyPlay" type="button">▶ / ❚❚</button><button id="spotifyNext" type="button">⏭</button></div>
+      <div class="spotify-setup"><input id="spotifyClientId" type="text" placeholder="Paste Spotify Client ID once" /><div class="spotify-row"><button id="spotifyConnect" type="button">Connect</button><button id="spotifyRefresh" type="button">Refresh</button><button id="spotifyDisconnect" type="button">Logout</button></div><p class="spotify-help" id="spotifyHelp">Create a Spotify app, paste Client ID, then add the redirect URL shown after clicking Connect.</p></div>
+    </aside>
+
+    <aside class="mini-panel focus-panel" id="focusPanel" aria-label="Focus mode" aria-hidden="true">
+      <div class="mini-panel-header"><div><p class="eyebrow">Focus mode</p><h2>Study timer</h2></div><button class="icon-button" id="focusClose" type="button" aria-label="Close focus">×</button></div>
+      <div class="focus-ring"><span id="focusModeLabel">Focus</span><strong id="focusTime">25:00</strong><small id="focusCycle">Pomodoro 1</small></div>
+      <div class="focus-presets"><button data-preset="25,5">Pomodoro</button><button data-preset="50,10">Deep work</button><button data-preset="15,3">Quick study</button></div>
+      <div class="focus-settings"><label>Focus <input id="focusMinutes" type="number" min="1" max="180" value="25" /></label><label>Break <input id="breakMinutes" type="number" min="1" max="60" value="5" /></label></div>
+      <div class="focus-actions"><button id="focusStart" type="button">Start</button><button id="focusPause" type="button">Pause</button><button id="focusReset" type="button">Reset</button></div>
+    </aside>
+
+    <script src="script.js"></script>
+  </body>
+</html>

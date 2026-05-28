@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Euphoric Logo Butterfly</title>
+    <link rel="stylesheet" href="alarm.css" />
+  </head>
+  <body>
+    <main class="stage is-flying" id="stage" aria-label="Euphoric reminder">
+      <span class="sparkles" aria-hidden="true"></span>
+      <button class="butterfly-button" id="butterflyButton" type="button" aria-label="Open Euphoric reminder">
+        <span class="logo-rig" aria-hidden="true">
+          <span class="logo-glow"></span>
+          <img class="logo-wing wing-left" src="assets/euphoric-symbol-cutout.png" alt="" />
+          <img class="logo-wing wing-right" src="assets/euphoric-symbol-cutout.png" alt="" />
+          <img class="logo-core" src="assets/euphoric-symbol-cutout.png" alt="" />
+        </span>
+      </button>
+
+      <section class="note" id="note" aria-hidden="true">
+        <div class="note-topline">
+          <span class="mini-butterfly"><img src="assets/euphoric-symbol-cutout.png" alt="" /></span>
+          <div>
+            <p class="eyebrow">Euphoric reminder</p>
+            <p class="time" id="timeText">Now</p>
+          </div>
+          <button class="close" id="closeButton" type="button" aria-label="Close">×</button>
+        </div>
+        <p class="task" id="taskText">Your reminder is ready.</p>
+        <div class="actions">
+          <button class="done" id="doneButton" type="button">Done</button>
+          <button class="snooze" id="snoozeButton" type="button">Snooze 10m</button>
+        </div>
+      </section>
+    </main>
+    <script src="alarm.js"></script>
+  </body>
+</html>

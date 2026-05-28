@@ -1,0 +1,35 @@
+{
+  "manifest_version": 3,
+  "name": "Euphoric",
+  "short_name": "Euphoric",
+  "version": "1.2.0",
+  "description": "A calming Chrome new tab with scenic wallpapers, Bhagavad Gita lessons, focus mode, Spotify controls, auto shortcuts, and butterfly reminders.",
+  "permissions": [
+    "storage",
+    "alarms",
+    "nativeMessaging",
+    "identity",
+    "topSites",
+    "history"
+  ],
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "chrome_url_overrides": {
+    "newtab": "newtab.html"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'; img-src 'self' data: https://images.unsplash.com; connect-src 'self' https://accounts.spotify.com https://api.spotify.com; style-src 'self' 'unsafe-inline';"
+  },
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsRpeJ5FAfK1TNE7i64ZrQNKw/ERFShiPZCdYc0ymZZuMCI+jQOEDqKAQmDFDSKA3H8XjqzKY2FI5vQfhK46OL/OTa9Oeen+NiE8L4hti332HymAKbX+FHMBcCAxY2fvwykP3EZvGIU2CkHIwTJe3gEnbddhuoJ8zNiJKCA8PBn5Cyi+HEtcvSd8oDDG8McoRT/5EQyAkx5RY0oWixS03ZDv1gc3A0RpTT28tjLreHPGhi8HdYTpWGHBcB+2VREHWFVMQ8lqnQUgpSPfKDS2NNLeYSb9pE/QEetmhskErhk8gN+OmRrTXQRTQouflHC5uA9WueILjft09TOzc5hYYLQIDAQAB",
+  "host_permissions": [
+    "https://accounts.spotify.com/*",
+    "https://api.spotify.com/*"
+  ]
+}

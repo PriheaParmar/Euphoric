@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <title>Euphoric Reminder</title>
+    <link rel="stylesheet" href="reminder.css" />
+  </head>
+  <body>
+    <main class="mini-reminder">
+      <button class="close" id="closeButton" type="button" aria-label="Close">×</button>
+      <div class="top-row">
+        <div class="butterfly-bubble" aria-hidden="true">
+          <img src="assets/euphoric-symbol.png" alt="" />
+        </div>
+        <div>
+          <p class="eyebrow">Butterfly reminder</p>
+          <p class="time" id="taskTime">Euphoric</p>
+        </div>
+      </div>
+      <section class="letter-card">
+        <span class="letter-icon">✉</span>
+        <p id="taskText">Your task is ready.</p>
+      </section>
+      <div class="actions" id="taskActions">
+        <button class="primary" id="doneButton" type="button">Done</button>
+        <button class="secondary" id="snoozeButton" type="button">Snooze 10m</button>
+      </div>
+    </main>
+    <script src="reminder.js"></script>
+  </body>
+</html>

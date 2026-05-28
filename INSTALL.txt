@@ -1,0 +1,11 @@
+HOW TO INSTALL
+
+1. Open Chrome.
+2. Go to chrome://extensions
+3. Enable Developer mode.
+4. Click Load unpacked.
+5. Select the chrome-extension folder.
+
+Optional reminders:
+Run RUN_THIS_FOR_LOGO_BUTTERFLY_COMPANION_windows/RESET_AND_INSTALL_COMPANION.bat
+Then restart Chrome.

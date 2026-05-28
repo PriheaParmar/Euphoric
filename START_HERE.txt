@@ -1,0 +1,45 @@
+Euphoric v6.8 Reminder Repair
+
+Use this build because v6.3 optimized broke the reminder connection.
+
+1. Open chrome://extensions
+2. Remove old Euphoric versions
+3. Load unpacked: LOAD_THIS_IN_CHROME_euphoric-extension-v6.8
+4. Open RUN_THIS_FOR_LOGO_BUTTERFLY_COMPANION_windows
+5. Double-click RESET_AND_INSTALL_COMPANION.bat
+6. Close ALL Chrome windows completely
+7. Reopen Chrome
+8. Euphoric > Tasks > Test logo butterfly
+
+If Test still does not work:
+- Run test_companion_direct.bat first
+- Then run check_native_host_install.bat
+- Send the log files from this folder
+
+
+v6.8 date validation fix:
+- Current-minute selections are automatically moved to the next minute.
+- Default reminder time is now closer for testing.
+- Due-task sweep checks every 30 seconds instead of every 60 seconds.
+
+
+Alarm engine fix: native host now reads Chrome messages immediately instead of waiting for the pipe to close. Extension also forces reminder sweeps every 10 seconds while the new tab is open.
+
+
+V6.8 FIX:
+- Reverted the broken v6.7 butterfly sizing bug.
+- Trail is bigger but softly masked so it does not become a rectangle.
+- Music starts when the butterfly begins flying.
+
+
+v7.0: Music changed to long soft magical piano + tiny sparkle sounds + calm background. It starts when the butterfly begins flying.
+
+
+v7.1:
+- Time design made more premium/stylish.
+- Bottom quote changed to daily Bhagavad Gita lessons.
+- Lessons start from Lesson 1 on the first day you open this version.
+- Butterfly landed size controls are in RUN_THIS_FOR_LOGO_BUTTERFLY_COMPANION_windows/alarm.css.
+
+
+v7.2: Added Spotify panel and Focus Mode / Pomodoro. Spotify setup requires your Spotify Developer Client ID and redirect URL allowlist.
